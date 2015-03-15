@@ -1,4 +1,6 @@
-A very basic perl-based CSV-templating system. It takes a template file and replaces specific parts with data from a csv file. I use this to maintain up-to-date lists and descriptions of publications and software on my website. I just update a spreadsheet with my recent projects, and then this script (running as a regular cron job) updates and correctly formats the website.
+A basic perl-based CSV-templating system. 
+
+It takes a template file and replaces specific parts with data from a csv file. I use this to maintain up-to-date lists and descriptions of publications and software on my website. I just update a spreadsheet with my recent projects, and then this script (running as a regular cron job) updates and correctly formats the website.
 
 A basic demo file is included.
 
@@ -12,11 +14,11 @@ The csv file must have column names in the first row. In your template file you 
 	Child's profile:
 		Name: :::name:::		
 		Age: :::age:::
-		School: :::school:::
+		School: :::primary_school:::
 	
 :::END:::
 
-where "name", "age" and "school" are column names in your CSV file. 
+where "name", "age" and "primary_school" are column names in your CSV file. 
 
 This will produce:
 
@@ -32,15 +34,15 @@ This will produce:
 
 Indentation isn't necessary, I've just included it for clarity. Additionally, you can automatically sort by a given column by doing this:
 
-:::FOREACH school:::
-	The children who go to :::school::: are:
+:::FOREACH primary_school:::
+	The children who go to :::primary_school::: are:
 	:::FOREACH:::
 	Child's profile:
 		Name: :::name:::		
 		Age: :::age::
 		
 	:::END:::
-:::END school:::
+:::END primary_school:::
 
 Which will produce 
 
