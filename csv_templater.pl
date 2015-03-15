@@ -1,5 +1,5 @@
 #!/usr/bin/env perl
-#a perl script for subbing csv data into a template file
+#A perl script for substituting csv data into a template file
 #depends: Text::CSV perl module.
 
 use strict;
