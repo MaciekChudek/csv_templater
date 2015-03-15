@@ -1,0 +1,57 @@
+A very basic perl-based CSV-templating system. It takes a template file and replaces specific parts with data from a csv file. I use this to maintain up-to-date lists and descriptions of publications and software on my website. I just update a spreadsheet with my recent projects, and then this script (running as a regular cron job) updates and correctly formats the website.
+
+A basic demo file is included.
+
+Depends on the perl Text::CSV module.
+
+Templating system:
+
+The csv file must have column names in the first row. In your template file you can loop over every row by wrapping some of the text in delimiters like so:
+
+:::FOREACH:::
+	Child's profile:
+		Name: :::name:::		
+		Age: :::age:::
+		School: :::school:::
+	
+:::END:::
+
+where "name", "age" and "school" are column names in your CSV file. 
+
+This will produce:
+
+	Child's profile:
+		Name: James	
+		Age: 6
+		School: West city primary
+
+	Child's profile:
+		Name: Sam
+		Age: 8
+		School: North city primary
+
+Indentation isn't necessary, I've just included it for clarity. Additionally, you can automatically sort by a given column by doing this:
+
+:::FOREACH school:::
+	The children who go to :::school::: are:
+	:::FOREACH:::
+	Child's profile:
+		Name: :::name:::		
+		Age: :::age::
+		
+	:::END:::
+:::END school:::
+
+Which will produce 
+
+	The children who go to West city primary are:
+	Child's profile:
+		Name: James	
+		Age: 6
+
+	The children who go to North city primary are:
+	Child's profile:
+		Name: Sam
+		Age: 8
+
+You can have arbitrarily many of any kind of loops in your template. 

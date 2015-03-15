@@ -1,0 +1,16 @@
+Dear Mrs. Prime Minister,
+
+As requested I have compiled this list of children in our school system, sorted by the school they attend.
+
+Your tireless public servant,
+
+[Insert Name Here]
+
+	:::FOREACH school:::
+	**:::school:::**
+		
+	The children who go to :::school::: are:
+		
+		:::FOREACH::: 	 :::name:::, who is :::age::: years of age 	
+		:::END:::
+	:::END school:::
